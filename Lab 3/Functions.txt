@@ -31,7 +31,7 @@ access page directory entry :
 	index :
 		type : uint32
 		name : PDX(VA)
-	page directory entry = ptr_page_directory[PDX(VA)]
+	uint32 page directory entry = ptr_page_directory[PDX(VA)]
 
 
 ===================================================================================
@@ -41,12 +41,13 @@ access page table entry :
 	index :
 		type : uint32
 		name : PTX(VA)
-	page table entry = ptr_page_table [PTX(VA)]
+	uint32 page table entry = ptr_page_table [PTX(VA)]
 
 ===================================================================================
 Frames :
-	type : int 
-	frameNum of page table = directory_entry >> 12 
-	frameNum of page = table_entry >> 12 
+	type : int
+	int frameNum of page table = directory_entry >> 12
+	int frameNum of page = table_entry >> 12
 
 ===================================================================================
+*/
