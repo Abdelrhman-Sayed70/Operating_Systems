@@ -50,4 +50,7 @@ Frames :
 	int frameNum of page = table_entry >> 12
 
 ===================================================================================
+Permissions (last 12 bit in table entry) 
+to deal with permission you must get table entry then deal with it 
+
 */
