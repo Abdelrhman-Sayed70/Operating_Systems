@@ -1,0 +1,6 @@
+// steps to add a new command : 
+/*
+ 1- declare header function (in .h or .c)  
+ 2- add it to the struct of commands 
+ 3- implement your function
+*/
