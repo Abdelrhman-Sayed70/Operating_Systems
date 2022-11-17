@@ -14,7 +14,7 @@ int command_share_page(int number_of_arguments, char **arguments)
 	uint32 va1 = strtol(arguments[1],NULL,16) ;
 	uint32 va2 = strtol(arguments[2],NULL,16) ;
 
-    uint32 *ptr_page_table1 = NULL;
+        uint32 *ptr_page_table1 = NULL;
 	uint32 *ptr_page_table2 = NULL;
 	get_page_table(ptr_page_directory,va1,&ptr_page_table1) ;
 	get_page_table(ptr_page_directory,va2,&ptr_page_table2) ;
