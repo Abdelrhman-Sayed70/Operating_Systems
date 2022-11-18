@@ -1,3 +1,12 @@
+## Share pages 
+**if we want to share to pages (first page point to frame in memory we want to make the second page point to the same fram**
+
+- get page table for first page if it is exist continue else terminate the process 
+- get page table for the second page and it is not exist (create it if the question ask you to do that) 
+- get first table entry and second table entry 
+- point second table entry to the first one 
+
+## 
 ![share](https://user-images.githubusercontent.com/99830416/202565635-73286346-3490-4078-a2f7-2b53b0d89e68.png)
 ![tst](https://user-images.githubusercontent.com/99830416/202565641-67fe7e07-c400-497f-8efb-d2c122ab8944.png)
 
