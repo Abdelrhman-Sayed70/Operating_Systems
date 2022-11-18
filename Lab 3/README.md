@@ -9,7 +9,7 @@
       
 -----------------------------------------------------
 
-## Page table pointer (array) :
+## Page table pointer (array)
 
     type : uint32*
 
