@@ -48,6 +48,6 @@
     uint32 page table entry = ptr_page_table [PTX(VA)]
 -----------------------------------------------------
 ## Permissions 
-    the 12 bits permissions for table entry and directory entry
+    the last 12 bits permissions for table entry and directory entry
 
 
