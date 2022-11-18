@@ -1,3 +1,6 @@
+```diff
+- Note that this table will be updated soon ISA cause its vaues may be not correct 
+```
 
 |     | **Page** | **Page table** |
 | --- | --- | --- |
