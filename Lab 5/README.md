@@ -117,15 +117,27 @@
   umnmap_frame(ptr_page_directory, virtual_address) ; 
   ```
 # get_frame_info
+
+- show if this virtual address is mapped to ptr_Frame_Info 
+- return ptr_page_table of the virtual_address 
+
   ```c
   uint32 *ptr_page_table = NULL ; 
   struct Fram_Info *ptr_Frame_Info = get_frame_info(ptr_page_directory, virtual_address, &ptr_page_table) ;
   if (ptr_Frame_Info == NULL) {// this virtual address is not mapped to any frame   }
   else {// this virtual_address is mapped to this ptr_Frame_Info}
   ```
- - also this function return ptr_page_table of the virtual_address 
 
+
+ # to_frame_info
  
+ - this function retun ptr_Frame_info 
+ - take physical_address 
+ 
+ ```c
+struct FrameInfo * ptr_frame_info ;
+ptr_frame_info = to_frame_info(physical_address); 
+ ```
  
 # Alloc page
  
