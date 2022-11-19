@@ -139,17 +139,16 @@ struct FrameInfo * ptr_frame_info ;
 ptr_frame_info = to_frame_info(physical_address); 
  ```
  
-# Alloc page
- 
-- Alloc page \<virtual address\>
-- store page
-- steps
-      
-      - allocate free frame    
-      - map virtual to frame
+# Alloc page for virtual address
 
-      
-      
-Note : Directory table & page table of size = (2 power 10) * 4B = 4KB (frame size) this means that each of dir and page table stored in 1 frames in RAM. each of  them need frame from Free_Frame_list
+- Check whether the page is mapped or not
+- if not, then, allocate a single frame from the free frame list
+- Map this frame to the given user virtual address 
+
+# Free Page for virtual address
+
+# NOTES
+
+- Note : Directory table & page table of size = (2 power 10) * 4B = 4KB (frame size) this means that each of dir and page table stored in 1 frames in RAM. each of  them need frame from Free_Frame_list
 
 
