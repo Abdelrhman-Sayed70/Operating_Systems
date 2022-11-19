@@ -101,7 +101,7 @@ Note : Directory table & page table of size = (2 power 10) * 4B = 4KB (frame siz
 - store page
 - steps
       
-      - allocate free frame
+      - allocate free frame    
       - map virtual to frame
 
       
