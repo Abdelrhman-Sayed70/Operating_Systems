@@ -33,13 +33,48 @@
        
 
 
-# Free frame list
+# Free_Frame_List
 
 - Linked list points on free frames only in RAM ( number_of_references = 0 )
 - Name in code : Free_Frame_List 
-- Need pointer of struct 
+- Need pointer of Frame_Info struct 
 
     ![Screenshot 2022-11-19 102902](https://user-images.githubusercontent.com/99830416/202842175-c4033776-3dc6-40ba-95e3-3c9fa1ad3274.png)
 
+- Operations on this linked list 
+
+      - Allocate frame (give me free frame to store page) 
+      - Free frame (i give you free frame)
       
+- Allocate frame 
+
+      - Take one item form linked list 
+      - Remove it from linked list 
+      - the functions shlould return pointer to Frame_Info struct 
+
+- Allocate frame code 
+      
+   ```c
+   struct Frame_info *ptr  = NULL ; 
+   uint32 ret  = allocate_frame(&ptr) ; // it is element in list but i need the physical address in RAM so 
+   if (ret != E_NO_MEM){
+      uint32 physical_addres = to_physical_address(ptr) ; // (start address of the list - ptr ) / entry size 
+   }
+   esle{
+      cprintf("NO Mem") ;
+   }
+   ```
+   
+- Free Frame 
      
+      - occure when number_of_references of block = 0 
+      - so i should add it to Free_Frame_List
+
+- Free Frame code
+
+   ```c
+      uint32 physical_address = 0x100000 ;
+      struct FrameInfo *ptr_frame_info ;  
+      ptr_frame_info = to_frame_info(physical_address) ;          
+      free_frame(ptr_frame_info);     
+   ```
