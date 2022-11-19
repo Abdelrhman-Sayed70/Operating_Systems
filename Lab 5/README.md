@@ -123,6 +123,10 @@
   if (ptr_Frame_Info == NULL) {// this virtual address is not mapped to any frame   }
   else {// this virtual_address is mapped to this ptr_Frame_Info}
   ```
+ - also this function return ptr_page_table of the virtual_address 
+
+ 
+ 
 # Alloc page
  
 - Alloc page \<virtual address\>
