@@ -52,7 +52,7 @@
 - Allocate frame code 
       
    ```c
-   struct Frame_info *ptr  = NULL ; 
+   struct Frame_Info *ptr  = NULL ; 
    int ret  = allocate_frame(&ptr) ; // it is element in list but i need the physical address in RAM so 
    if (ret != E_NO_MEM){
       uint32 physical_address = to_physical_address(ptr) ; // (start address of the list - ptr ) / entry size 
