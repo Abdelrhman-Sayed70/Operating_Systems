@@ -123,7 +123,7 @@
 
   ```c
   uint32 *ptr_page_table = NULL ; 
-  struct Fram_Info *ptr_Frame_Info = get_frame_info(ptr_page_directory, virtual_address, &ptr_page_table) ;
+  struct FrameInfo *ptr_Frame_Info = get_frame_info(ptr_page_directory, virtual_address, &ptr_page_table) ;
   if (ptr_Frame_Info == NULL) {// this virtual address is not mapped to any frame   }
   else {// this virtual_address is mapped to this ptr_Frame_Info}
   ```
