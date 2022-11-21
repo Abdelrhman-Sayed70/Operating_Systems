@@ -155,4 +155,4 @@ umnmap_frame(ptr_page_directory, virtual_address) ;
 
 # NOTES
 
-- Directory table & page table of size = (2 power 10) * 4B = 4KB (frame size) this means that each of dir and page table stored in 1 frames in RAM. each of  them need frame from Free_Frame_list
+- Directory table & page table of size = (2 power 10) * 4B = 4KB (frame size) this means that each of dir and page table stored in 1 frame in RAM. each of  them need frame from Free_Frame_list
