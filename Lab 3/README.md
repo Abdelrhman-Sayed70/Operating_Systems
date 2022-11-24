@@ -49,13 +49,8 @@
 -----------------------------------------------------
 ## Permissions 
     the last 12 bits permissions for table entry and directory entry
-    
--------
-```diff
-- Note that this table will be updated soon ISA cause its values may be not correct 
-```
-
-
+  
+## Page and Page table  
 |     | **Page** | **Page table** |
 | --- | --- | --- |     
 | **Permissions**| deal with page table entry | deal with directory entry |
