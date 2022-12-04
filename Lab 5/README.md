@@ -1,5 +1,5 @@
 # Lab 5: Intel Memory Management III
-
+# [Lab 5 video](https://youtu.be/hg-eTZAiqoU)
 # Store process in RAM steps
 
 - Devide process into pages and RAM into Frams of fixed size (4 KB) -> paging
@@ -52,7 +52,7 @@
 - Allocate frame code 
       
    ```c
-   struct Frame_info *ptr  = NULL ; 
+   struct Frame_Info *ptr  = NULL ; 
    int ret  = allocate_frame(&ptr) ; // it is element in list but i need the physical address in RAM so 
    if (ret != E_NO_MEM){
       uint32 physical_address = to_physical_address(ptr) ; // (start address of the list - ptr ) / entry size 
@@ -123,7 +123,7 @@
 
   ```c
   uint32 *ptr_page_table = NULL ; 
-  struct Fram_Info *ptr_Frame_Info = get_frame_info(ptr_page_directory, virtual_address, &ptr_page_table) ;
+  struct FrameInfo *ptr_Frame_Info = get_frame_info(ptr_page_directory, virtual_address, &ptr_page_table) ;
   if (ptr_Frame_Info == NULL) {// this virtual address is not mapped to any frame   }
   else {// this virtual_address is mapped to this ptr_Frame_Info}
   ```
@@ -155,4 +155,4 @@ umnmap_frame(ptr_page_directory, virtual_address) ;
 
 # NOTES
 
-- Directory table & page table of size = (2 power 10) * 4B = 4KB (frame size) this means that each of dir and page table stored in 1 frames in RAM. each of  them need frame from Free_Frame_list
+- Directory table & page table of size = (2 power 10) * 4B = 4KB (frame size) this means that each of dir and page table stored in 1 frame in RAM. each of  them need frame from Free_Frame_list
