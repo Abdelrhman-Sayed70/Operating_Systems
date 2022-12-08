@@ -124,6 +124,7 @@ PROGRAM_SEGMENT_FOREACH(Seg, ptr_program_start)
 
 - create empty env object [from the free environment list] [OS role]
 - create directory table for the env. how? dir = 4 KB = 1 frame. so allocate 1 frame for the directory table of the environment
+- copy kernel in the created directory 
 - for each segment [running program directory table should take the control ]
 	- allocate frame for the current seg 
 	- map  
@@ -135,44 +136,7 @@ PROGRAM_SEGMENT_FOREACH(Seg, ptr_program_start)
 Note : when we create env for specific program we should swithc the control of the directory table to the created program directory table (not OS ptr_page_dir) and at the end of the process the control goes back to OS ptr_page_dir    
 ```
 
-```c
-struct UserProgramInfo* env_create(char* user_program_name)
-{
-	//[1] get pointer to the start of the "user_program_name" program in memory
-	// Hint: use "get_user_program_info" function,
-	// you should set the following "ptr_program_start" by the start address of the user program
-	uint8* ptr_program_start = 0;
+## Alligning addresses 
+- start address -> ROUNDDOWN 
+- end address  -> ROUNDUP 
 
-	struct UserProgramInfo* ptr_user_program_info = get_user_program_info(user_program_name);
-
-	if (ptr_user_program_info == 0)
-		return NULL ;
-
-	ptr_program_start = ptr_user_program_info->ptr_start ;
-	//===========================================================================================
-	
-	//[2] allocate new environment, (from the free environment list)
-	//if there's no one, return NULL
-	// Hint: use "allocate_environment" function
-	struct Env* e = NULL;
-	if(allocate_environment(&e) == E_NO_FREE_ENV)
-	{
-		return 0;
-	}
-	//===========================================================================================
-	
-	//[3] allocate a frame for the page directory, Don't forget to set the references of the allocated frame.
-	//if there's no free space, return NULL
-	//your code here . . .
-	struct Frame_Info *ptr_new_dir = NULL ;
-	int ret = allocate_frame(&ptr_new_dir);
-	if (ret == E_NO_MEM) {
-		cprintf("faild to allocate Environment directory table\n") ;
-		return NULL ;
-	}
-	ptr_new_dir ->references = 1 ;
-	//===========================================================================================
-
-}
-
-```
