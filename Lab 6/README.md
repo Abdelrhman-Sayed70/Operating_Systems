@@ -12,7 +12,7 @@
 3. Program registers
 4. The environment ID.
 5. ptr_user directory 
-6. each program has its directory table   
+6. each program (environment) has its directory table   
 
 ## FOS progrmas 
 `in user folder`
@@ -67,7 +67,7 @@ struct UserProgramInfo {
 
 ## UserPrograms[] array 
 `kern/user_environment.c` 
-
+`contains all FOS programs info`
 ```c
 struct UserProgramInfo userPrograms[] = {
 	{ "fos_helloWorld", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_helloWorld), 0 },
@@ -75,6 +75,54 @@ struct UserProgramInfo userPrograms[] = {
 	{ "fos_alloc", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_alloc), 0},
 	{ "fos_input", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_input), 0},
 	{ "fos_game", "Created by FOS team, fos@nowhere.com", PTR_START_OF(game), 0},
+	// env is set to 0 as no env created yet for any program so i should create env
 };
 ```
+
+## Code is segments 
+- source code is splitted into segments  
+- To successfully load the binary and make it ready for execution we need to load each segment to its right place in memory
+- The information about program segments is stored in "struct ProgramSegment" located in "user_environment.c". 
+
+## ProgramSegment
+`kern/user_environment.c`
+
+```c
+struct ProgramSegment {
+	uint8 *ptr_start;  //start address of this segment in memory (the memory address where it is saved before loading)
+	uint32 size_in_file;
+	uint32 size_in_memory;
+	uint8 *virtual_address; // mapped to which virtual_address
+
+	// for use only with PROGRAM_SEGMENT_FOREACH
+	uint32 segment_id;
+};
+```
+## size in file VS size in memory 
+
+- file : size of the written code 
+- memory : size of any thing in the code e.g (int arr[1024] will assign 1024 free space in memory)
+
+`size in memory >= size in file`
+
+## iterate over all segements  
+`kern/user_environment.c` 
+
+```c
+PROGRAM_SEGMENT_FOREACH(Seg, ptr_program_start)	
+```
+
+## env_create
+`kern/user_environment.c`
+
+`load exe in RAM`
+
+- create empty env object 
+- create directory table for the env. how? dir = 4 KB = 1 frame. so allocate 1 frame for the directory table of the environment
+- for each segment 
+	- allocate frame for the current seg 
+	- map  
+	- copy seg binary form Disk to RAM 
+- initialize instruction pointer to the start of the code 
+- allocate memory for stack 
 
