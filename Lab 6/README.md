@@ -26,13 +26,30 @@ contains all programs FOS can run like
 `kern/user_environment.c`
 
 ```c
-// to declare the start pointer in your code
-DECLARE_START_OF(prog_name)
+//to declare the start pointer in your code
+DECLARE_START_OF(prog_name)		
+//to get the pointer to the start of “fos_input” binary file in memory
+uint8 *ptr_start = PTR_START_OF(prog_name) 
 ```
 
+## Env struct
+`inc/environment_definitions.h` 
+`contains all info needed about environment`
 ```c
-// to get the pointer to the start of “fos_input” binary file in memory
-uint8 *ptr_start = PTR_START_OF(prog_name);
-```
+struct Env {
+	struct Trapframe env_tf;	// Saved registers
+	LIST_ENTRY(Env)
+	prev_next_info;	// Free list link pointers
+	int32 env_id;			// Unique environment identifier
+	int32 env_parent_id;		// env_id of this env's parent
+	unsigned env_status;		// Status of the environment
+	uint32 env_runs;		// Number of times environment has run
 
+	// Address space
+	uint32 *env_pgdir; // Kernel virtual address of page dir
+	uint32 env_cr3;	   // Physical address of page dir
+
+};
+
+```
 
