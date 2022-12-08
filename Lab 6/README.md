@@ -25,6 +25,7 @@ contains all programs FOS can run like
 ## Program in FOS  
 `kern/user_environment.c`
 
+
 ```c
 //to declare the start pointer in your code
 DECLARE_START_OF(prog_name)		
@@ -50,6 +51,30 @@ struct Env {
 	uint32 env_cr3;	   // Physical address of page dir
 
 };
+```
 
+## UserProgramInfo Struct
+`kern/user_environment.h`
+`contains infor needed about user program`
+```c
+struct UserProgramInfo {
+	const char *name;
+	const char *desc;
+	uint8* ptr_start;
+	struct Env* environment;
+};
+```
+
+## UserPrograms[] array 
+`kern/user_environment.c` 
+
+```c
+struct UserProgramInfo userPrograms[] = {
+	{ "fos_helloWorld", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_helloWorld), 0 },
+	{ "fos_add", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_add), 0},
+	{ "fos_alloc", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_alloc), 0},
+	{ "fos_input", "Created by FOS team, fos@nowhere.com", PTR_START_OF(fos_input), 0},
+	{ "fos_game", "Created by FOS team, fos@nowhere.com", PTR_START_OF(game), 0},
+};
 ```
 
