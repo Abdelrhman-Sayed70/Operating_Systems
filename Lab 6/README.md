@@ -117,12 +117,15 @@ PROGRAM_SEGMENT_FOREACH(Seg, ptr_program_start)
 
 `load exe in RAM`
 
-- create empty env object 
+- create empty env object [OS role]
 - create directory table for the env. how? dir = 4 KB = 1 frame. so allocate 1 frame for the directory table of the environment
-- for each segment 
+- for each segment [running program directory table should take the control ]
 	- allocate frame for the current seg 
 	- map  
 	- copy seg binary form Disk to RAM 
 - initialize instruction pointer to the start of the code 
 - allocate memory for stack 
 
+```txt
+Note : when we create env for specific program we should swithc the control of the directory table to the created program directory table (not OS ptr_page_dir) and at the end of the process the control goes back to OS ptr_page_dir    
+```
