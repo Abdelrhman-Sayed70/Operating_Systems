@@ -14,12 +14,25 @@
 5. ptr_user directory 
 6. each program has its directory table   
 
-## Source code 
-1. allocate
-2. map
-3. load source code (copy) 
+## FOS progrmas 
+`in user folder`
 
+contains all programs FOS can run like  
 
-## 
-to store all programs Env we use array of struct 
+- fos_add.c
+- fos_game.c 
+
+## Program in FOS  
+`kern/user_environment.c`
+
+```c
+// to declare the start pointer in your code
+DECLARE_START_OF(prog_name)
+```
+
+```c
+// to get the pointer to the start of “fos_input” binary file in memory
+uint8 *ptr_start = PTR_START_OF(prog_name);
+```
+
 
